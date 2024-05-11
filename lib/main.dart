@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,6 +29,7 @@ class BirthdayApp extends StatefulWidget {
 class _BirthdayAppState extends State<BirthdayApp> {
   TextEditingController inputController = TextEditingController();
   String outputText = '';
+  final audioPlayer = AudioPlayer();
 
   _showSnackBar(message) {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -60,6 +62,12 @@ class _BirthdayAppState extends State<BirthdayApp> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Image.asset(
+              './assets/happy_birthday.gif', // Path to your GIF file
+              height: 200,
+              width: 200,
+            ),
+            const SizedBox(height: 20),
             TextField(
               controller: inputController,
               decoration: InputDecoration(
@@ -67,6 +75,7 @@ class _BirthdayAppState extends State<BirthdayApp> {
                 hintText: 'YYYY-MM-DD or Base64 String',
               ),
               keyboardType: TextInputType.text,
+              autofocus: true, // Set autofocus to true
             ),
             const SizedBox(height: 20),
             ElevatedButton(
@@ -100,7 +109,14 @@ class _BirthdayAppState extends State<BirthdayApp> {
                 } else {
                   _showSnackBar('Please enter your birthday!');
                 }
+
+                // Play birthday music from local asset
+                audioPlayer.play('assets/birthday_music.mp3', isLocal: true);
               },
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.blue,
+              ),
               child: const Text('Convert'),
             ),
             const SizedBox(height: 20),

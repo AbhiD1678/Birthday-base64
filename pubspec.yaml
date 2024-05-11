@@ -36,6 +36,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
   table_calendar: ^3.0.9
+  audioplayers: ^0.20.1
 
 dev_dependencies:
   flutter_test:
@@ -59,7 +60,8 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - assets/
+    - assets/birthday_song.mp3
+    - assets/happy_birthday.gif
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
